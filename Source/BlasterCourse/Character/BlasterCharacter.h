@@ -6,6 +6,7 @@
 #include "InputMappingContext.h"
 #include "BlasterCharacter.generated.h"
 
+class UCombatComponent;
 class UCameraComponent;
 class USpringArmComponent;
 
@@ -19,21 +20,30 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void PostInitializeComponents() override;
 	
 protected:
 	virtual void BeginPlay() override;
 
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
+	void EquipButtonPressed();
 
 private:
-
+	/**
+	 * Components
+	 */
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* CameraBoom;
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* CameraComponent;
 
-	// Enhanced Input System
+	UPROPERTY(VisibleAnywhere)
+	UCombatComponent* CombatComponent;
+
+	/**
+	 * Enhanced Input System
+	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	UInputMappingContext* DefaultMappingContext;
 
@@ -46,6 +56,9 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
 	UInputAction* JumpAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowPrivateAccess = "true"))
+	UInputAction* EquipAction;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UWidgetComponent* OverheadWidget;
 

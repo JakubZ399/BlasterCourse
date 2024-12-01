@@ -12,10 +12,16 @@ class BLASTERCOURSE_API UCombatComponent : public UActorComponent
 
 public:	
 	UCombatComponent();
+	friend class ABlasterCharacter;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	void EquipWeapon(class AWeapon* WeaponToEquip);
+	
 protected:
 	virtual void BeginPlay() override;
 
-private:	
+private:
+	ABlasterCharacter* BlasterCharacter;
+	AWeapon* EquippedWeapon;
 	
 };
