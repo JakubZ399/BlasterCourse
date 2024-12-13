@@ -35,5 +35,9 @@ private:
 
 	UPROPERTY(Replicated)
 	bool bAiming;
-	
+
+	UPROPERTY(EditAnywhere)
+	float BaseWalkSpeed{650.f};
+	UPROPERTY(EditAnywhere)
+	float AimWalkSpeed{450.f};
 };
