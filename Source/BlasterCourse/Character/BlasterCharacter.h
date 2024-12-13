@@ -4,6 +4,7 @@
 #include "GameFramework/Character.h"
 #include "InputAction.h"
 #include "InputMappingContext.h"
+#include "BlasterCourse/BlasterComponents/CombatComponent.h"
 #include "BlasterCharacter.generated.h"
 
 class UCombatComponent;
@@ -92,4 +93,5 @@ public:
 
 	FORCEINLINE float GetAO_Yaw() const { return AO_Yaw; }
 	FORCEINLINE float GetAO_Pitch() const { return AO_Pitch; }
+	AWeapon* GetEquippedWeapon();
 };
